@@ -10,6 +10,8 @@ class HeadcrabsController < ApplicationController
   # GET /headcrabs/1
   # GET /headcrabs/1.json
   def show
+    @headcrab = Headcrab.find(params[:id])
+    @cart_action = @headcrab.cart_action current_user.try :id
   end
   #
   # # GET /headcrabs/new
