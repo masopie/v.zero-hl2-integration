@@ -1,0 +1,33 @@
+<ol>
+<div id = "posts-container">
+
+ <%@posts.each do |post|%>
+  <div id = "post<%=post.id%>" class = "post-container">
+    <li>
+      <div class = "vote-button"><%= link_to "^", vote_path(post) %>
+      </div>
+      <div class = "post">
+      <div class = "post-title"><a href = "<%=post.url%>"><%=post.title%></a>
+      </div>
+      <div class = "post-info">
+        <section class = "points"><%=post.votes%></section> points by <a href = "/users/<%=post.submitter.id%>"><%=post.submitter.first_name%></a> <%=post.age%><%if post.age != 1%> hours ago<%else%> hour ago<%end%> |
+        <%= link_to post.comments.count.to_s + " comments", post_path(post) %>
+         | <%= link_to "delete post", post_path(post), method: :delete %>
+      </div>
+  </div>
+<%end%>
+
+</div>
+</ol>
+
+  <div id = "post-form">
+  <%= form_for :post, url: "/posts" do |f|  %>
+
+    Title: <%= f.text_field :title %>
+    Url: <%= f.text_field :url %>
+    <%= f.submit "submit new post" %>
+
+  <% end %>
+  </div>
+
+  <div>
