@@ -13,9 +13,10 @@ class TransactionsController < ApplicationController
     #   :phone => params[:phone]
     #   )
 
+    # => First condition covers customer if they don't have a PaymentMethod saved in the Vault.
     unless current_user.has_payment_info?
       @result = Braintree::Transaction.sale(
-        :amount => "9.00",
+        :amount => "7.00",
         :payment_method_nonce => nonce,
         customer: {
           first_name: params[:first_name],
@@ -27,9 +28,9 @@ class TransactionsController < ApplicationController
         options: {
           store_in_vault: true
         })
-    else
+    else # => If they DO have their payment method stored in vault from previous transaction hitting above condition...
       @result = Braintree::Transaction.sale(
-        :amount => "9.00",
+        :amount => "4.00",
         :payment_method_nonce => nonce
       )
     end
@@ -47,9 +48,8 @@ class TransactionsController < ApplicationController
 
   private
 
-  # => Upgraded private method for ULTRA VAULT ACTION
-
   def generate_client_token
+    # => Checking if we can pull customer id from BT's vault for stored payment method use
     if current_user.has_payment_info?
       Braintree::ClientToken.generate(customer_id: current_user.braintree_customer_id)
     else

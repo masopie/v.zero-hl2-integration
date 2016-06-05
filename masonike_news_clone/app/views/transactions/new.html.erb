@@ -1,5 +1,6 @@
 <h3>Buy my thing!</h3>
 
+<!-- Hosted fields implementation. Certainly less clean looking eh -->
 <%= form_tag({controller: 'transactions', action: 'create'}, method: 'post', id: 'my-form') do %>
 
   <% if current_user %>
