@@ -8,17 +8,27 @@ class TransactionsController < ApplicationController
 
     unless current_user.has_payment_info?
       @result = Braintree::Transaction.sale(
-        :amount => "10.00",
+        :amount => "15.00",
         :payment_method_nonce => nonce,
         customer: {
-          
-        }
-      )
+          first_name: params[:first_name],
+          last_name: params[:last_name],
+          company: params[:company],
+          email: current_user.email,
+          phone: params[:phone]
+        },
+        options: {
+          store_in_vault: true
+        })
     else
-      @result =
+      @result = Braintree::Transaction.sale(
+        :amount => "10.00",
+        :payment_method_nonce => nonce
+      )
     end
 
     if @result.success?
+      current_user.update(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
       flash[:notice] = "Payment was successful!"
     else
       flash[:error] = @result.message
