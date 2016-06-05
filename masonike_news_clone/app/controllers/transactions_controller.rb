@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
 
     unless current_user.has_payment_info?
       @result = Braintree::Transaction.sale(
-        :amount => "15.00",
+        :amount => "9.00",
         :payment_method_nonce => nonce,
         customer: {
           first_name: params[:first_name],
@@ -22,10 +22,15 @@ class TransactionsController < ApplicationController
         })
     else
       @result = Braintree::Transaction.sale(
-        :amount => "10.00",
+        :amount => "9.00",
         :payment_method_nonce => nonce
       )
     end
+
+    p "result is: #{@result}"
+    # if @result.message
+    #   p @result.message
+    # end
 
     if @result.success?
       current_user.update(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
