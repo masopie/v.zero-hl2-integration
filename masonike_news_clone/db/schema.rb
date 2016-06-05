@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20160321162612) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "braintree_customer_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_foreign_key "comments", "posts"

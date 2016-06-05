@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
       :amount => "10.00",
       :payment_method_nonce => nonce
     )
-    
+
     if @result.success?
       flash[:notice] = "Payment was successful!"
     else
@@ -21,7 +21,13 @@ class TransactionsController < ApplicationController
 
   private
 
+  # => Upgraded private method for ULTRA VAULT ACTION
+  
   def generate_client_token
-    Braintree::ClientToken.generate
+    if current_user.has_payment_info?
+      Braintree::ClientToken.generate(customer_id: current_user.braintree_customer_id)
+    else
+      Braintree::ClientToken.generate
+    end
   end
 end
