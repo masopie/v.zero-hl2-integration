@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'transactions/new'
+  post 'transactions/create'
+  get 'transactions/create' => 'posts#index'
 
   root to: 'posts#index'
 

@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
       flash[:notice] = "Payment was successful!"
     else
       flash[:error] = @result.message
-      render root_path
+      # render "/"
     end
   end
 end
