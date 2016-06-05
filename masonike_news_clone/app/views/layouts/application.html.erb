@@ -8,14 +8,15 @@
 </head>
 <body>
   <div class="flash"><%= flash.notice %></div>
- <div id = "header"><a href = "/"><h3> Masonike News </h3></a>
+  <div id = "header"><a href = "/"><h3> Masonike News </h3></a>
       <a href = "/sort/new">new</a> |
       <a href = "/sort/popular">popular</a> |
       <a href = "/sort/comments">comments</a> |
+
     <%if current_user%>
-    <a href = "/users/<%=current_user.id%>"><%=current_user.first_name%></a> | <a href = "/logout">logout</a>
+      <a href = "/users/<%=current_user.id%>"><%=current_user.first_name%></a> | <a href = "/logout">logout</a>
     <%else%>
-    <a href = "/login">login</a> | <a href = "/signup">register</a>
+      <a href = "/login">login</a> | <a href = "/signup">register</a>
     <%end%>
   </div>
 

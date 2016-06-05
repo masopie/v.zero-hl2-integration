@@ -6,6 +6,13 @@ class TransactionsController < ApplicationController
   def create
     nonce = params[:payment_method_nonce]
 
+    # created_customer = Braintree::Customer.create(
+    #   :first_name => params[:first_name],
+    #   :last_name => params[:last_name],
+    #   :email => params[:email],
+    #   :phone => params[:phone]
+    #   )
+
     unless current_user.has_payment_info?
       @result = Braintree::Transaction.sale(
         :amount => "9.00",
@@ -28,16 +35,13 @@ class TransactionsController < ApplicationController
     end
 
     p "result is: #{@result}"
-    # if @result.message
-    #   p @result.message
-    # end
 
     if @result.success?
+      # => Customer's Braintree id is saved in my model to use later. Along with above Transaction customer creation, trumps need for creating customer separately.
       current_user.update(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
       flash[:notice] = "Payment was successful!"
     else
       flash[:error] = @result.message
-      # render "/"
     end
   end
 
