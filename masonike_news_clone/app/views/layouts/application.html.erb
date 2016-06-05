@@ -13,7 +13,7 @@
       <a href = "/sort/popular">popular</a> |
       <a href = "/sort/comments">comments</a> |
     <%if current_user%>
-    <a href = "/users/<%=current_user.id%>"><%=current_user.name%></a> | <a href = "/logout">logout</a>
+    <a href = "/users/<%=current_user.id%>"><%=current_user.first_name%></a> | <a href = "/logout">logout</a>
     <%else%>
     <a href = "/login">login</a> | <a href = "/signup">register</a>
     <%end%>

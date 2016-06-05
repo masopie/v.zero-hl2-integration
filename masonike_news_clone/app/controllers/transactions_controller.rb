@@ -6,10 +6,17 @@ class TransactionsController < ApplicationController
   def create
     nonce = params[:payment_method_nonce]
 
-    @result = Braintree::Transaction.sale(
-      :amount => "10.00",
-      :payment_method_nonce => nonce
-    )
+    unless current_user.has_payment_info?
+      @result = Braintree::Transaction.sale(
+        :amount => "10.00",
+        :payment_method_nonce => nonce,
+        customer: {
+          
+        }
+      )
+    else
+      @result =
+    end
 
     if @result.success?
       flash[:notice] = "Payment was successful!"
@@ -22,7 +29,7 @@ class TransactionsController < ApplicationController
   private
 
   # => Upgraded private method for ULTRA VAULT ACTION
-  
+
   def generate_client_token
     if current_user.has_payment_info?
       Braintree::ClientToken.generate(customer_id: current_user.braintree_customer_id)
