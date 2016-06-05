@@ -5,10 +5,12 @@ class TransactionsController < ApplicationController
 
   def create
     nonce = params[:payment_method_nonce]
+
     @result = Braintree::Transaction.sale(
       :amount => "10.00",
       :payment_method_nonce => nonce
     )
+    
     if @result.success?
       flash[:notice] = "Payment was successful!"
     else
