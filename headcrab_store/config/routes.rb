@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :headcrabs
+  resources :headcrabs, only: [:show, :index]
 
   root 'headcrabs#index'
   # The priority is based upon order of creation: first created -> highest priority.

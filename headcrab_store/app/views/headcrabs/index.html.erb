@@ -23,13 +23,9 @@
         <td><%= headcrab.description %></td>
         <td><%= headcrab.pic_url %></td>
         <td><%= link_to 'Show', headcrab %></td>
-        <td><%= link_to 'Edit', edit_headcrab_path(headcrab) %></td>
-        <td><%= link_to 'Destroy', headcrab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Headcrab', new_headcrab_path %>
