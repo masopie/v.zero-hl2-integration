@@ -1,0 +1,157 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+  counter-reset:section;
+  background-color: #F6F6EF;
+  font-family: Verdana;
+  max-width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.posts-container{
+  width: 90%;
+}
+
+.flash{
+  text-align: center;
+  padding-top: 4em;
+  font-size: 4em;
+  background-color: white;
+  border: 4px solid red;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 50%;
+  height: 7em;
+}
+
+.flash:empty{
+  border: none;
+  background: none;
+}
+
+.vote-button{
+  display: inline-block;
+  height: 50px;
+/*  background-color: gray;*/
+}
+.points{
+  display:inline-block;
+}
+.vote-button a{
+  text-decoration: none;
+  color: black;
+}
+.post{
+  display: inline-block;
+  height: 50px;
+/*  background-color: blue;*/
+}
+.post-title{
+/*  display: inline-block;*/
+  height: 30px;
+}
+
+.post-title a{
+  text-decoration: none;
+  color: black;
+}
+.post-info{
+/*  display: inline-block;*/
+  height: 15px;
+  font-size: 10px;
+  color: gray;
+}
+#header h3{
+  display: inline;
+  font-size: 20px;
+}
+.post-info a{
+  text-decoration: none;
+  color: gray;
+}
+
+.post-container{
+  margin: 5px;
+}
+#post-form{
+  width: 35%;
+  margin: 0 auto;
+}
+#header{
+  margin-top: 10px;
+  background-color: #7DBF3C;
+  padding: 5px;
+}
+#header a{
+  text-decoration: none;
+  color: black;
+}
+
+#posts{
+  margin: 0 auto;
+  padding-left: 200px;
+}
+
+.post-title{
+  font-size: 18px;
+}
+.post-comments{
+  margin: 0 auto;
+  width: 90%;
+
+}
+.comment-vote-button{
+  display: inline-block;
+  height: 20px;
+}
+
+.comment-vote-button a{
+  text-decoration: none;
+  color: black;
+}
+
+.comment-info{
+  display: inline-block;
+  color: #57543D;
+}
+
+.comment-info a{
+  text-decoration: none;
+  color: #57543D;
+}
+
+.comment-body{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.comment{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 1.5;
+}
+
+#comment-form{
+  padding-left:15px;
+}
+
+#main-container{
+  padding: 10px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  background-color: #D9D6C1;
+}

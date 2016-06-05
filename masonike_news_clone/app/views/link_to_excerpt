@@ -1,0 +1,7 @@
+link_to_excerpt
+
+<%=link_to_if(current_user ==nil, "login", { controller: "sessions", action: "new" }) do
+     link_to(current_user.name, { controller: "users", action: "show", id: current_user })
+   end%> |
+<%=link_to_if(current_user ==nil, "register", { controller: "sessions", action: "create" }) do
+     link_to("logout", { controller: "sessions", action: "destroy", id: current_user }) end%>

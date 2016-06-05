@@ -1,0 +1,24 @@
+<div id = "post<%=@post.id%>" class = "post-container">
+  <div class = "vote-button"><a href = "/posts/<%=@post.id%>/vote" >^</a></div>
+  <div class = "post">
+    <div class = "post-title"><a href = "<%=@post.url%>"><%=@post.title%></a></div>
+    <div class = "post-info"><span class = "comment-points"><%=@post.votes%></span> points by <a href = "/users/<%=@post.submitter.id%>"><%=@post.submitter.name%></a> <%=@post.age%><%if @post.age != 1%> hours ago<%else%> hour ago<%end%> | <a href="/posts/<%=@post.id%>"><span class = "comments-count"><%=@post.comments.count%></span> comments</a></div>
+  </div>
+  <div id = "comment-form">
+    <form id="comment" method="post" action="/posts/<%=@post.id%>/comments">
+      <textarea name = "body" rows = "10" cols = "50" placeholder="comment here"></textarea><br><br>
+      <input type="submit" value="add comment">
+    </form>
+  </div>
+    <div class = "post-comments">
+    <%@post.comments.each do |comment|%>
+    <div class = "comment">
+      <div class = "comment-title">
+      <div class = "comment-vote-button"><a href = "/comments/<%=comment.id%>/vote" >^</a></div>
+      <div class = "comment-info">by <a href="/users/<%=comment.commenter.id%>"><%=comment.commenter.name%></a> <%=comment.age%> hours ago</div>
+      </div>
+      <div class = "comment-body"><%=comment.body%></div>
+    </div>
+    <%end%>
+  </div>
+</div>

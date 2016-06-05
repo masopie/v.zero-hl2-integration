@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MasonikeNewsClone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="flash"><%= flash.notice %></div>
+ <div id = "header"><a href = "/"><h3> Masonike News </h3></a>
+      <a href = "/sort/new">new</a> |
+      <a href = "/sort/popular">popular</a> |
+      <a href = "/sort/comments">comments</a> |
+    <%if current_user%>
+    <a href = "/users/<%=current_user.id%>"><%=current_user.name%></a> | <a href = "/logout">logout</a>
+    <%else%>
+    <a href = "/login">login</a> | <a href = "/signup">register</a>
+    <%end%>
+  </div>
+
+  <br>
+    <div>
+      <a href="/checkout">BONUS OPTION: BUY A NEWS THING!</a>
+    </div>
+  <br>
+
+  <div id = "main-container">
+    <%= yield %>
+  </div>
+
+</body>
+</html>
