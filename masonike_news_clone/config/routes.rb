@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/new'
+
   root to: 'posts#index'
 
   # resources :posts
